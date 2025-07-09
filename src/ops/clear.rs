@@ -16,6 +16,7 @@ pub fn clear(context: &Context, framebuffer: Option<&ValidatedAttachments<'_>>,
              rect: Option<&Rect>, color: Option<(f32, f32, f32, f32)>, color_srgb: bool,
              depth: Option<f32>, stencil: Option<i32>)
 {
+    println!("Hello, I am inside clear");
     unsafe {
         let mut ctxt = context.make_current();
 
@@ -108,6 +109,9 @@ pub fn clear(context: &Context, framebuffer: Option<&ValidatedAttachments<'_>>,
 
             flags |= gl::STENCIL_BUFFER_BIT;
 
+            println!("Hello, I am inside stencil clear");
+            ctxt.gl.StencilMaskSeparate(gl::BACK, 0xFF);
+            ctxt.gl.StencilMaskSeparate(gl::FRONT, 0xFF);
             ctxt.gl.StencilMask(0xFF);
 
             if ctxt.state.clear_stencil != stencil {
