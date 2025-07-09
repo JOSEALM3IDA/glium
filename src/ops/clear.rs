@@ -108,6 +108,8 @@ pub fn clear(context: &Context, framebuffer: Option<&ValidatedAttachments<'_>>,
 
             flags |= gl::STENCIL_BUFFER_BIT;
 
+            ctxt.gl.StencilMask(0xFF);
+
             if ctxt.state.clear_stencil != stencil {
                 ctxt.gl.ClearStencil(stencil);
                 ctxt.state.clear_stencil = stencil;
